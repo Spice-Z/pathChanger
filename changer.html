@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Hello Extensions </title>
+</head>
+
+<script>
+  window.addEventListener('keypress', onKeyPress)
+
+  function onKeyPress(e) {
+    if (e.keyCode == '13') {
+      createPath();
+    }
+  }
+
+  function createPath() {
+    var originPath = document.getElementById('originPath').value;
+    var windowsPath = originPath.replace(/\//g, '\\');
+    var macPath = originPath.replace(/\\/g, '/');
+    document.getElementById('windows').value = windowsPath;
+    document.getElementById('mac').value = macPath;
+  }
+
+  function copyValue(idName) {
+    var value = document.getElementById(idName).value;
+    if (copyTextToClipboard(value)) {
+      alert('copyしたがね')
+    } else {
+      alert('copyできん');
+    }
+  }
+
+  /**
+ * クリップボードコピー関数
+ * 入力値をクリップボードへコピーする
+ * [引数]   textVal: 入力値
+ * [返却値] true: 成功　false: 失敗
+ */
+  function copyTextToClipboard(textVal) {
+    // テキストエリアを用意する
+    var copyFrom = document.createElement("textarea");
+    // テキストエリアへ値をセット
+    copyFrom.textContent = textVal;
+
+    // bodyタグの要素を取得
+    var bodyElm = document.getElementsByTagName("body")[0];
+    // 子要素にテキストエリアを配置
+    bodyElm.appendChild(copyFrom);
+
+    // テキストエリアの値を選択
+    copyFrom.select();
+    // コピーコマンド発行
+    var retVal = document.execCommand('copy');
+    // 追加テキストエリアを削除
+    bodyElm.removeChild(copyFrom);
+    // 処理結果を返却
+    return retVal;
+  }
+</script>
+
+<body id='bodyContets'>
+  <h1>Path Changer</h1>
+  <input type="text" id="originPath">
+  <button onclick="createPath()">変換</button>
+  <p>windowsPath</p>
+  <textarea name="windows" id="windows" cols="30" rows="10" onclick='copyValue("windows")'></textarea>
+  <p>macPath</p>
+  <textarea name="mac" id="mac" cols="30" rows="10" onclick='copyValue("mac")'></textarea>
+</body>
+
+</html>
