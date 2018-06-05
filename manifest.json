@@ -6,6 +6,10 @@
     "default_popup": "changer.html",
     "default_icon": "hello_extensions.png"
   },
+  "background": {
+    "scripts": ["function.js"]
+  },
+  "permissions": ["clipboardRead"],
   "manifest_version": 2,
   "commands": {
     "_execute_browser_action": {
