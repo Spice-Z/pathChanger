@@ -16,8 +16,8 @@ function onKeyPress(e) {
 
 function createPath() {
   var originPath = document.getElementById("originPath").value;
-  var windowsPath = originPath.replace(/\//g, "\\");
-  var macPath = originPath.replace(/\\/g, "/");
+  var windowsPath = originPath.replace("smb://", "\\\\").replace(/\//g, "\\");
+  var macPath = originPath.replace("\\\\", "smb://").replace(/\\/g, "/");
   document.getElementById("windows").value = windowsPath;
   document.getElementById("mac").value = macPath;
 }
