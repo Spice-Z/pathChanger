@@ -4,12 +4,16 @@
   "version": "1.0",
   "browser_action": {
     "default_popup": "changer.html",
-    "default_icon": "hello_extensions.png"
+    "default_icon": "p.png"
   },
   "background": {
-    "scripts": ["function.js"]
+    "scripts": [
+      "function.js"
+    ]
   },
-  "permissions": ["clipboardRead"],
+  "permissions": [
+    "clipboardRead"
+  ],
   "manifest_version": 2,
   "commands": {
     "_execute_browser_action": {
